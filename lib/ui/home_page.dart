@@ -12,13 +12,17 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   AnimationController _controller;
   int currentIndex = 1;
 
-  // 애니메이션 변수
+  // 플레이트 애니메이션 변수
   Animation<double> _clockWiseRotationAnimation;
   Animation<double> _antiClockWiseRotationAnimation;
   Tween<double> _antiClockWiseRotationTween;
   Tween<double> _clockWiseRotationTween;
   bool isClockwise = false;
   double rotationValue = 0.0;
+
+  // 배경 애니메이션
+  bool isBgBlack = false;
+  double blackBgHeight = 0.0;
 
   @override
   void initState() {
@@ -62,12 +66,26 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             child: Stack(
               fit: StackFit.expand,
               children: <Widget>[
+                _buildBlackBg(),
                 _buildPlate(),
                 _buildGestureDetection(),
               ],
             ),
           );
         },
+      ),
+    );
+  }
+
+  Widget _buildBlackBg() {
+    return Positioned(
+      left: 0,
+      right: 0,
+      top: 0,
+      child: AnimatedContainer(
+        color: Color(0xFF384450),
+        height: blackBgHeight,
+        duration: Duration(milliseconds: 400),
       ),
     );
   }
@@ -120,6 +138,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     if (!_controller.isAnimating) {
       _controller.forward(from: 0.0);
+      isBgBlack = !isBgBlack;
+      setState(() {
+        blackBgHeight = isBgBlack ? MediaQuery.of(context).size.height : 0.0;
+      });
     }
 
     _changeFood();
