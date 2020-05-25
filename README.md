@@ -1,16 +1,14 @@
 # ui_challenge_cooking
 
-A new Flutter project.
+UI 연습 요리앱
+Reference: [UI 챌린지](https://github.com/Xuzan10/ui_challenge_cooking)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+```sh
+$ flutter pub get packages
+$ flutter run
+```
 
-A few resources to get you started if this is your first Flutter project:
-
+## Screenshot
 ![](./ui-gif.gif)
-
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
